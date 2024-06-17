@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import  axios  from 'axios'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,33 +7,16 @@ import { UserList } from './userList';
 import { UserContext } from './Context';
 
 function App() {
-  const [users, setUsers] = useState([
-    {
-      id: 101,
-      name: "Tiko",
-      salary: 300000
-    },{
-      id: 102,
-      name: "Ani",
-      salary: 400000
-    },{
-      id: 103,
-      name: "Sevak",
-      salary: 500000
-    },{
-      id: 104,
-      name: "Narek",
-      salary: 500000
-    },{
-      id: 105,
-      name: "Armen",
-      salary: 10000000
-    },{
-      id: 106,
-      name: "Anna",
-      salary: 700000
-    },
-  ]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(()=>{
+    axios
+    .get("http://localhost:3004/users")
+    .then(
+      res => {
+        setUsers(res.data);
+      })
+  }, [])
 
   const salaryUp = id => {
     setUsers(users.map(elm=>
