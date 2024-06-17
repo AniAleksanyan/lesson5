@@ -1,6 +1,10 @@
 
+import { useContext } from 'react';
 import { UserItem } from './UserItem';
-export const UserList = ({ items, onSalaryUp, onSalaryDown, onRemove }) => {
+import { UserContext } from './Context';
+
+export const UserList = () => {
+    const {items} = useContext(UserContext)
     return (
         <>
             <h3>UserList</h3>
@@ -20,9 +24,6 @@ export const UserList = ({ items, onSalaryUp, onSalaryDown, onRemove }) => {
                             <UserItem
                                 key={elm.id}
                                 {...elm}
-                                onSalaryUp={onSalaryUp}
-                                onSalaryDown={onSalaryDown}
-                                onRemove={onRemove}
                             />
                         )
                     }

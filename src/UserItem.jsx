@@ -1,4 +1,8 @@
-export const UserItem = ({id, name, salary, onSalaryUp, onSalaryDown, onRemove}) => {
+import { useContext } from "react"
+import { UserContext } from "./Context"
+
+export const UserItem = ({id, name, salary}) => {
+    const {onSalaryUp, onSalaryDown, onRemove} = useContext(UserContext)
     return(
         <tr>
             <td>{id}</td>

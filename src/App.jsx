@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { UserList } from './userList';
+import { UserContext } from './Context';
 
 function App() {
   const [users, setUsers] = useState([
@@ -54,9 +55,14 @@ function App() {
 
 
   return (
-    <> 
-      <UserList items={users} onSalaryUp={salaryUp} onSalaryDown={salaryDown} onRemove={removeUser}></UserList>
-    </>
+    <UserContext.Provider value={{
+      items: users,
+      onSalaryUp: salaryUp,
+      onSalaryDown: salaryDown,
+      onRemove: removeUser
+    }}> 
+      <UserList/>
+    </UserContext.Provider>
   )
 }
 
